@@ -131,7 +131,7 @@ function return_error($return){
 function check_login($auth){
 
     if(!$auth->isLogged()){
-        redirect("/login",true);
+        redirect("/admin/login",true);
     }
 }
 

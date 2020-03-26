@@ -18,7 +18,7 @@ switch (get("subpage")){
         break;
 
     default:
-        redirect("/posts/list");
+        redirect("/admin/posts/list");
         exit;
         break;
 }

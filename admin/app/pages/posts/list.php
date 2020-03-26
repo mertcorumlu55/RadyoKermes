@@ -114,8 +114,8 @@
                 });
             } );
         </script>
-        <script src="/app/js/jquery.fancybox.min.js"></script>
-        <script src="/app/js/popup.js"></script>
+        <script src="app/js/jquery.fancybox.min.js"></script>
+        <script src="app/js/popup.js"></script>
 
     </div>
 </main>

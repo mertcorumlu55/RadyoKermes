@@ -1,6 +1,6 @@
 <?php
 
-include("../../../../inc/loader.php");
+include("../../../inc/loader.php");
 
     if(!$_POST){
 
@@ -34,28 +34,18 @@ include("../../../../inc/loader.php");
         $insertArray = array();
 
         $insertArray["full_name"] = post("user_full_name");
-        $insertArray["telephone"] = post("user_telephone");
         $insertArray["authority"] = post("user_authority");
-        $password = null;
-        $sendActivationMail = null;
+        $password = post("user_password");
+        $sendActivationMail = 0;
         $sendPasswordMail = false;
 
-        if( empty(post("user_password")) ){
-            $password = random_string(8);
-            $sendActivationMail = 0;
-            $sendPasswordMail = 1;
-            //send mail here with activation
-        }else{
-            $password = post("user_password");
 
-            if(post("user_send_mail") == 1){
-                $sendActivationMail = 0;
-                $sendPasswordMail = 1;
-            }else{
-                $sendActivationMail = 1;
-            }
 
+        if(post("user_send_mail") == 1){
+            $sendPasswordMail = true;
         }
+
+
 
         $return = $auth->register(post("user_email"), $password, $password, $insertArray, null, $sendActivationMail);
 
@@ -67,7 +57,7 @@ include("../../../../inc/loader.php");
 
 
 
-        //SEND PASSWORD MAIL
+       //SEND PASSWORD MAIL
         if($sendPasswordMail){
 
             $check = sendMail(

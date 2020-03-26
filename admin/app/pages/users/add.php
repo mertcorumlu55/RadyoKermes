@@ -19,7 +19,7 @@
                         <div class="bgc-white bd bdrs-3 p-20 mB-20">
                             <h4 class="c-grey-900 mT-10 mB-30">Add New User</h4>
 
-                            <form id="user_ad_form" action="/ajax/user-add" method="POST"  class="needs-validation not-valid" autocomplete="off" novalidate>
+                            <form id="user_ad_form" action="/admin/ajax/user-add" method="POST"  class="needs-validation not-valid" autocomplete="off" novalidate>
 
                                 <fieldset>
 
@@ -57,11 +57,10 @@
 
                                 <div class="form-group row">
 
-                                    <label for="" class="col-sm-2 col-form-label"><strong>Password </strong></label>
+                                    <label for="" class="col-sm-2 col-form-label"><strong>Password <span class="text-danger">*</span></strong></label>
 
                                     <div class="col-sm-4">
-                                        <input type="password" id="password" class="form-control" name="user_password" style="text-transform: ">
-                                        <small>If You Don't Set A Password,Users Password Will Be Automatically Created and Emailed</small>
+                                        <input type="password" id="password" class="form-control" name="user_password" style="text-transform: " required>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -86,18 +85,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-
-                                    <label for="" class="col-sm-2 col-form-label"><strong>Telephone <span class="text-danger">*</span></strong></label>
-
-                                    <div class="col-sm-4">
-                                        <input type="tel" class="form-control input-medium bfh-phone" data-format="ddd ddd dd dd"  placeholder="555 444 33 22" name="user_telephone" required>
-                                        <div class="invalid-feedback">
-                                            Please enter a valid telephone.
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <hr>
                                 <div class="alert message"></div>
                                 <button type="submit" class="btn btn-primary " data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing..." >Submit</button>
@@ -112,7 +99,7 @@
         </div>
     </main>
 
-    <script src="/js/form-validator.js"></script>
+    <script src="/admin/js/form-validator.js"></script>
     <script>
         form_validate({
             do_before: function(){},

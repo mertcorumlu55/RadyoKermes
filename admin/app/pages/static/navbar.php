@@ -209,7 +209,7 @@
 <!--                    <li role="separator" class="divider"></li>-->
 
                     <li>
-                        <a href="/profile" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <a href="/admin/profile" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             <i class="ti-pencil mR-10"></i>
                             <span>Profile</span>
                         </a>

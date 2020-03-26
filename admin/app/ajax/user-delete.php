@@ -1,7 +1,7 @@
 <?php
-include("../../../../inc/loader.php");
+include("../../../inc/loader.php");
 
-if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/users/list"){
+if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/admin/users/list"){
     http_response_code(400);
     exit;
 }

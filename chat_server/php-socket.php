@@ -44,8 +44,16 @@ while (true) {
                 break;
             }
 
-
 		}
+
+        /*$socketData = @socket_read($newSocketArrayResource, 1024, PHP_NORMAL_READ);
+        if ($socketData === false) {
+            socket_getpeername($newSocketArrayResource, $client_ip_address);
+            $connectionACK = $chatHandler->connectionDisconnectACK($client_ip_address);
+            $chatHandler->send($connectionACK);
+            $newSocketIndex = array_search($newSocketArrayResource, $clientSocketArray);
+            unset($clientSocketArray[$newSocketIndex]);
+        }*/
 	}
 }
 socket_close($socketResource);

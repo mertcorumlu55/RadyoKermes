@@ -9,19 +9,21 @@ switch ($page_name){
     //Ordinary Pages
     case "":
         $page_name = "home";
+        $head = "<link rel=\"stylesheet\" href=\"/admin/app/css/jquery-jvectormap-2.0.5.css\">";
+        $footer = "";
         break;
 
     case "posts":
-        $head = "<link rel=\"stylesheet\" href=\"/app/css/jquery.fancybox.min.css\">";
-        $footer = "<script src=\"/app/js/popup.js\"></script>
-                   <script src=\"/app/js/jquery.fancybox.min.js\"></script>
-                   <script src=\"/app/js/ellipsis.js\"></script>";
+        $head = "<link rel=\"stylesheet\" href=\"/admin/app/css/jquery.fancybox.min.css\">";
+        $footer = "<script src=\"/admin/app/js/popup.js\"></script>
+                   <script src=\"/admin/app/js/jquery.fancybox.min.js\"></script>
+                   <script src=\"/admin/app/js/ellipsis.js\"></script>";
         break;
 
     case "users":
-        $head = "<link rel=\"stylesheet\" href=\"/app/css/jquery.fancybox.min.css\">";
-        $footer = "<script src=\"/app/js/popup.js\"></script>
-                   <script src=\"/app/js/jquery.fancybox.min.js\"></script>";
+        $head = "<link rel=\"stylesheet\" href=\"/admin/app/css/jquery.fancybox.min.css\">";
+        $footer = "<script src=\"/admin/app/js/popup.js\"></script>
+                   <script src=\"/admin/app/js/jquery.fancybox.min.js\"></script>";
         break;
 
     case "settings":
@@ -35,7 +37,7 @@ switch ($page_name){
         if(!$auth->isLogged()){
             include ("pages/login.php");
         }else{
-            redirect("/");
+            redirect("/admin");
         }
 
         exit;

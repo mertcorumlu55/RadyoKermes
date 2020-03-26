@@ -1,29 +1,24 @@
 <main class="main-content bgc-grey-100">
+    <div class="alert alert-success" id="snackbar">Some text some message..</div>
     <div id="mainContent">
 
         <div class="container-fluid" style="padding:0;">
 
     <div class="row gap-20 masonry pos-r">
 
+        <!--SERVER INFO-->
         <div class="masonry-item  w-100">
             <div class="row gap-20">
-                <!-- #Toatl Visits ==================== -->
+                <!-- #SUNUCU DURUMU ==================== -->
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Moderators</h6>
+                            <h6 class="lh-1">Sunucu Durumu</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong></strong></p>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm"></span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-deep-purple-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
+                                    <p class="alert text-center"><strong class="text-success">ONLINE</strong></p>
                                 </div>
 
                             </div>
@@ -31,69 +26,48 @@
                     </div>
                 </div>
 
-                <!-- #Total Page Views ==================== -->
+                <!-- #ANLIK DİNLEYİCİ ==================== -->
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Advisors</h6>
+                            <h6 class="lh-1">Anlık Dinleyici</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong></strong></p>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm"></span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-green-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
+                                    <p class="alert text-center"><strong id="listeners">-/512</strong></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- #Unique Visitors ==================== -->
+                <!-- #ÇALAN ŞARKI ==================== -->
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Chairs</h6>
+                            <h6 class="lh-1">Çalan Şarkı</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong></strong></p>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm">%</span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-light-blue-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
+                                    <p class="alert text-center"><strong id="song">-</strong></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- #Bounce Rate ==================== -->
+                <!-- #AUTODJ DURUMU ==================== -->
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Delegates</h6>
+                            <h6 class="lh-1">AutoDJ(TEST AŞAMASINDA)</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong></strong></p>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm">%</span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-blue-gray-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
+                                    <p class="alert text-center"><strong>ON</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -102,226 +76,84 @@
             </div>
         </div>
 
-        <div class="masonry-item col-12">
-            <!-- #Site Visits ==================== -->
-
-            <div class="bd bgc-white">
-                <div class="fxw-nw@lg+ ">
-                    <div class="peer peer-greed p-20">
-
-                        <div class="layers">
-                            <div class="layer w-100 mB-10">
-                                <h6 class="lh-1">Your Pending Files</h6>
-                            </div>
-
-                            <div class="layer w-100">
-                                <div class="row">
-
-                                    <?php
-                                    /*
-                                    if($files->rowCount() < 1){
-                                        ?>
-                                        <div class="alert alert-warning">You Have No Pending Files</div>
-                                        <?php
-                                    }else {
-
-                                        ?>
-                                        <table id="files" class="DataTable chair-table table dataTable no-footer display responsive no-wrap" cellspacing="0" cellpadding="0">
-                                            <thead>
-                                            <tr>
-                                                <th >Unique ID</th>
-                                                <th data-priority="1">File Name</th>
-                                                <th >Submitted By</th>
-                                                <th >Country</th>
-                                                <th data-priority="2">Status</th>
-                                                <th data-priority="3"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <?php
-                                            while ($data = $files->fetch(PDO::FETCH_ASSOC)) {
-
-
-                                                ?>
-
-                                                <tr>
-                                                    <td><strong><?= $data["unq_id"] ?></strong></td>
-                                                    <td>
-                                                        <i class="fa
-                                            <?php
-                                                        switch ($data["file_type"]) {
-                                                            case "application/pdf":
-                                                                echo "fa-file-pdf-o";
-                                                                break;
-
-                                                            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                                                            case "application/msword":
-                                                                echo "fa-file-word-o";
-                                                                break;
-                                                        }
-                                                        ?>
-                                            "></i>
-
-                                                        <a href="/get_file?id=<?= $data["file_id"] ?>"><?= $data["file_name"] ?></a>
-
-                                                    </td>
-                                                    <td>
-                                                        <strong>
-
-                                                            (<?php
-                                                            switch ($data["auth"]) {
-
-                                                                case 0;
-                                                                    echo '<span class="text-secondary">' . $Auth_Statues[$data["auth"]] . '</span>';
-                                                                    break;
-
-                                                                case 1;
-                                                                    echo '<span class="text-danger">' . $Auth_Statues[$data["auth"]] . '</span>';
-                                                                    break;
-
-                                                                case 2;
-                                                                    echo '<span class="text-success">' . $Auth_Statues[$data["auth"]] . '</span>';
-                                                                    break;
-
-                                                                case 3;
-                                                                    echo '<span class="text-warning">' . $Auth_Statues[$data["auth"]] . '</span>';
-                                                                    break;
-
-                                                                case 4;
-                                                                    echo '<span class="text-primary">' . $Auth_Statues[$data["auth"]] . '</span>';
-                                                                    break;
-
-
-                                                            }
-                                                            ?>)
-                                                        </strong>
-                                                        <?= $data["name"] . " " . $data["surname"] ?></td>
-                                                    <td>
-                                                        <div
-                                                            class=" <?= $data["flag"] != "" ? "flag flag-" . strtolower($data["flag"]) : "" ?>"
-                                                            style="vertical-align: middle"></div> <?= $data["country_name"] ?>
-                                                    </td>
-                                                    <td><?= $file_status_button[$data["status"]] ?>
-                                                        <?= ($data["is_reso"] == "1" ? "<i class=\"fa fa-star text-warning ambassador\" data-toggle=\"tooltip\" title=\"Plenary Session Resolution\" ></i>" : "") ?>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-primary"
-                                                                onclick="location.replace('/files/list')">Go To Files
-                                                        </button>
-                                                    </td>
-
-                                                </tr>
-
-                                                <?php
-                                            }
-
-
-                                            ?>
-
-
-                                            </tbody>
-                                        </table>
-                                        <?php
-                                    }
-*/
-                                    ?>
-
+        <!--SERVER ACTIONS-->
+        <div class="masonry-item  w-100">
+            <div class="row gap-20">
+                <!-- #SUNUCU ==================== -->
+                <div class='col-md-6'>
+                    <div class="layers bd bgc-white p-20">
+                        <div class="layer w-100 mB-10">
+                            <h6 class="lh-1">SUNUCU (TEST AŞAMASINDA)</h6>
+                        </div>
+                        <div class="layer w-100">
+                            <div class="peers ai-sb fxw-nw">
+                                <div class="peer peer-greed">
+                                    <div class="holder m-auto" style="width: fit-content;">
+                                        <button class="btn btn-success server-button" id="server_start">Sunucuyu Başlat</button>
+                                        <button class="btn btn-danger" id="server_stop">Sunucuyu Durdur</button>
+                                        <button class="btn btn-warning" id="server_restart">Sunucuyu Yeniden Başlat</button>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="masonry-item col-12">
-            <!-- #Site Visits ==================== -->
-            <div class="bd bgc-white">
-                <div class="fxw-nw@lg+ ai-s">
-                    <div class="peer peer-greed p-20">
-                        <div class="layers">
-                            <div class="layer w-100 mB-10">
-                                <h6 class="lh-1">Next Session</h6>
-                            </div>
-                            <div class="layer w-100">
-                                <div id="world-map-marker">
-
-
-                                        <table id="sessions" class="DataTable chair-table table  dataTable no-footer display responsive no-wrap" cellspacing="0" cellpadding="0">
-
-                                            <thead>
-                                            <tr>
-                                                <th data-priority="1">Session Name</th>
-                                                <th >Session Start</th>
-                                                <th>Session End</th>
-                                                <th data-priority="2"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-
-
-
-
-
-
-
-                                            </tbody>
-                                        </table>
-
-
+                <!-- #AUTODJ ==================== -->
+                <div class='col-md-6'>
+                            <div class="layers bd bgc-white p-20">
+                                <div class="layer w-100 mB-10">
+                                    <h6 class="lh-1">AUTODJ (TEST AŞAMASINDA)</h6>
+                                </div>
+                                <div class="layer w-100">
+                                    <div class="peers ai-sb fxw-nw">
+                                        <div class="peer peer-greed">
+                                            <div class="holder m-auto" style="width: fit-content;">
+                                                <button class="btn btn-success">AutoDJ Başlat</button>
+                                                <button class="btn btn-danger">AutoDJ Durdur</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
+        <!--LISTENER INFO-->
         <div class="masonry-item col-12">
             <!-- #Site Visits ==================== -->
             <div class="bd bgc-white">
                 <div class="peers fxw-nw@lg+ ai-s">
-                    <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
+                    <div class="peer peer-greed w-60p@lg+ w-100@lg- p-20">
                         <div class="layers">
                             <div class="layer w-100 mB-10">
-                                <h6 class="lh-1">Statistics</h6>
+                                <h6 class="lh-1">Dinleyiciler</h6>
                             </div>
-                        </div>
-                        <div class="layers">
                             <div class="layer w-100">
-                                <!-- Progress Bars -->
-                                <div class="layers" style="padding:0 30px 0 30px">
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Session Attendance Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm">%</span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-light-blue-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Ambassador Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm"></span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-blue-gray-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="layer w-100">
-                                        <small class="fw-600 c-grey-700">Files Approved Percentage</small>
-                                        <span class="pull-right c-grey-600 fsz-sm">%</span>
-                                        <div class="progress mT-10">
-                                            <div class="progress-bar bgc-green-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:%;"> <span class="sr-only">50% Complete</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <div id="world-map-marker" style="width: 100%; height: 500px;"></div>
                             </div>
                         </div>
                     </div>
+                    <div class="peer bdL p-20 w-40p@lg+ w-100p@lg-">
+                        <div class="layers">
+                            <table id="peers" class="DataTable table  dataTable no-footer display responsive no-wrap" cellspacing="0" cellpadding="0">
 
+                                <thead>
+                                <tr>
+                                    <th data-priority="3">Ülke</th>
+                                    <th data-priority="1">IP</th>
+                                    <th data-priority="2">Browser</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -330,54 +162,90 @@
         </div>
     </div>
 </main>
+<script src="/admin/app/js/jquery-jvectormap-2.0.5.min.js"></script>
+<script src="/admin/app/js/jquery-jvectormap-world-merc.js"></script>
+<script>
 
-    <script>
         $(document).ready( function () {
-            $('#files').DataTable({
-                "bPaginate": false,
-                bFilter: false,
-                bInfo: false,
-                responsive: true
-
+            var dataTable = $('#peers').DataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "searching": false,
+                pageLength: 9
             });
-            $('#sessions').DataTable({
-                "bPaginate": false,
-                bFilter: false,
-                bInfo: false,
-                responsive: true
 
+            $('#world-map-marker').vectorMap({
+                map: 'world_merc',
+                backgroundColor:"#fff",
+                borderColor:"#fff",
+                borderOpacity:.25,
+                borderWidth:0,
+                color:"#e6e6e6",
+                regionStyle:{initial:{fill:"#e4ecef"}},
+                markerStyle:{
+                    initial:{
+                        r:4,
+                        fill:"#fff",
+                        "fill-opacity":1,
+                        stroke:"#000",
+                        "stroke-width":2,
+                        "stroke-opacity":.4
+                    }},
+                series:{regions:[{values:{TR:120},scale:["#9c27b0","#a741b0"]}]},
+                normalizeFunction:"polynomial",
+                hoverOpacity:null,
+                zoomOnScroll:!1,
+                scaleColors:["#b6d6ff","#005ace"],
+                selectedColor:"#dc53df",
+                enableZoom:!1,
+                hoverColor:"#fff"
             });
-        } );
+            var mapObj = $('#world-map-marker').vectorMap('get', 'mapObject');
+            mapObj.setFocus({scale: 8, region:"TR", animate: true});
 
-        $("div.counter").each(function (index,data) {
-            var time = $(this).data("seconds");
-            var object = $(this);
-            object.find("strong").html(time_to_string(time) + "Left" );
+            get_radio_data(dataTable,mapObj);
             setInterval(function () {
-                if(time === 0){
-                    location.reload();
-                    return;
-                }
-                time--;
-                object.find("strong").html(time_to_string(time) + "Left");
-            },1000);
+                get_radio_data(dataTable,mapObj);
+            },10000);
+
+
+            $("button.server-button").on("click",function (e) {
+                e.preventDefault();
+                snackbar_toggle();
+            });
+
 
         });
 
-        function time_to_string(time){
-            var string="";
-            var minutes = number_format(Math.floor((time % 3600) / 60));
-            if(minutes > 0){
-                string += minutes+ " Minute "
-            }
-            var seconds = number_format(Math.floor((time % 60)));
-            string += seconds+ " Second ";
-            return string;
+        function get_radio_data(dataTable,mapObj){
+
+
+            $.ajax({
+                url: "/admin/ajax/get_info?json=1",
+                success:function (data) {
+                    $("#listeners").text(data.listeners + "/512");
+                    $("#song").text(data.track);
+
+                }
+
+                });
+
+        $.ajax({
+            url: "/admin/ajax/listener-information",
+            success:function (data) {
+                var markers = [];
+                dataTable.clear();
+                $.each(data,function(key,ipinfo){
+                    markers.push({ latLng: [ipinfo.latitude, ipinfo.longitude], name: ipinfo.ip+" | "+ ipinfo.useragent });
+                    dataTable.row.add([ipinfo.country,ipinfo.ip,ipinfo.useragent]);
+                });
+
+                mapObj.addMarkers(markers,[]);
+                dataTable.draw();}
+        });
+
         }
 
-        function number_format(n){
-            return n > 9 ? "" + n: "0" + n;
-        }
 
     </script>
 

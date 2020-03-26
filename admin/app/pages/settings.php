@@ -19,7 +19,7 @@
                 <div class="col-md-12" style="padding:0;">
                     <div class="bgc-white bd bdrs-3 p-20 mB-20">
 
-                        <form action="/ajax/settings-edit" method="POST" class="needs-validation not-valid"
+                        <form action="/admin/ajax/settings-edit" method="POST" class="needs-validation not-valid"
                               autocomplete="off" novalidate>
 
                             <?php
@@ -87,6 +87,49 @@
                                         <small>Reply email of site.</small>
                                     </div>
                                 </div>
+                                <hr>
+
+                                <h4 class="c-grey-900 mT-10 mB-30">Radio Server</h4>
+                                <div class="form-group row">
+
+                                    <label for="" class="col-sm-2 col-form-label"><strong>Server</strong></label>
+
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="radio_server" value="<?=$content["radio_server"]?>" required/>
+                                        <small>Radyo Sunucusu Adresi</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
+                                    <label for="" class="col-sm-2 col-form-label"><strong>Port</strong></label>
+
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="radio_port" value="<?=$content["radio_port"]?>" required/>
+                                        <small>Radyo Sunucusu Portu</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
+                                    <label for="" class="col-sm-2 col-form-label"><strong>Password</strong></label>
+
+                                    <div class="col-sm-4">
+                                        <input type="password" class="form-control" name="radio_password" value="<?=$content["radio_password"]?>" required>
+                                        <small>Radyo Sunucusu Admin Şifresi</small>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <h4 class="c-grey-900 mT-10 mB-30">IpGeoLocation API Key</h4>
+                                <div class="form-group row">
+
+                                    <label for="" class="col-sm-2 col-form-label"><strong>API Key</strong></label>
+
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="ipgeolocation_apikey" value="<?=$content["ipgeolocation_apikey"]?>" required/>
+                                    </div>
+                                </div>
+
                                 <hr>
 
                                 <h4 class="c-grey-900 mT-10 mB-30">SMTP</h4>
@@ -332,7 +375,7 @@
 
 </script>
 
-<script src="/js/form-validator.js"></script>
+<script src="/admin/js/form-validator.js"></script>
 <script>
     form_validate({
         do_before: function(){},

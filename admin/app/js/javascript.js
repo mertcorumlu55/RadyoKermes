@@ -1,7 +1,7 @@
 function logout(){
 
     $.ajax({
-        url:"/app/ajax/logout",
+        url:"/admin/app/ajax/logout",
         type:"post",
         success :function () {
             location.reload();
@@ -9,33 +9,6 @@ function logout(){
     });
 
 }
-
-function file_printed(id){
-
-    if(confirm("Are you sure marking this file as printed?")){
-        $.ajax({
-            url : "/app/ajax/file-evaluate-post",
-            type : "POST",
-            data : {"type":"file_evaluate","unique_id": id,"file_status":"4"},
-            error:function () {
-                alert("An Error Occured");
-            },
-            success:function (data) {
-
-                if(data.error === true){
-                    alert(data.message);
-                }else{
-                   location.reload();
-                }
-
-            }
-        });
-    }
-
-
-
-}
-
 $(document).on("click","button.delete-button",function () {
 
    if( $(this).data("id") !== "" && $(this).data("type") !== ""){
@@ -69,3 +42,14 @@ $(document).on("click","button.delete-button",function () {
 
 
 });
+
+function snackbar_toggle() {
+    // Get the snackbar DIV
+    var a = $("#snackbar");
+
+    // Add the "show" class to DIV
+    a.addClass("show");;
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ a.removeClass("show") }, 5000);
+}

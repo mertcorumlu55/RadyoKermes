@@ -7,7 +7,7 @@
  */
 
 //LOAD APP
-include("../../../../inc/loader.php");
+include("../../../inc/loader.php");
 
 //SET RETURN ARRAY
 $return=array(

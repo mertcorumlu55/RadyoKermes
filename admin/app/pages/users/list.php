@@ -73,7 +73,7 @@
                                         <td><?=$content["email"]?></td>
                                         <td><?=$content["telephone"]?></td>
                                         <td><?=$content["dt"]?></td>
-                                        <td><button class="btn btn-primary" onclick=" open_popup('/ajax/user-edit?id=<?=$content["id"]?>') ">Edit</button></td>
+                                        <td><button class="btn btn-primary" onclick=" open_popup('/admin/ajax/user-edit?id=<?=$content["id"]?>') ">Edit</button></td>
                                     </tr>
                                     
                                 <?php
@@ -101,8 +101,8 @@
                 });
             } );
         </script>
-        <script src="/app/js/jquery.fancybox.min.js"></script>
-        <script src="/app/js/popup.js"></script>
+        <script src="/admin/app/js/jquery.fancybox.min.js"></script>
+        <script src="/admin/app/js/popup.js"></script>
 
     </div>
 </main>

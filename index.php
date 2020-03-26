@@ -1,3 +1,4 @@
+<?php include("inc/loader.php");?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -36,7 +37,7 @@
                         </div>
                             <div class="ready-player-1">
                                 <audio>
-                                    <source src="http://radyokermes.com:8000/;" type="audio/mpeg">
+                                    <source src="http://<?=$auth_config->radio_server?>:<?=$auth_config->radio_port?>/;" type="audio/mpeg">
                                 </audio>
                             </div>
                     </div>
@@ -62,6 +63,7 @@
 
 
                 <div class="col-12 chatbox p-0 mb-5" style="position: relative">
+
                     <div class="username_container">
                         <div class="username_inner">
                             <div class="username_inputs">
@@ -73,7 +75,14 @@
                         </div>
                     </div>
                 <form style="text-align: left;" name="frmChat" id="frmChat">
-                    <div id="chat-box"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="chat-box"></div>
+                        </div>
+                        <div class="col-3 pl-0 d-none">
+                            <div id="clients-box"></div>
+                        </div>
+                    </div>
                     <input type="text" name="chat-message" id="chat-message" placeholder="Mesaj"  class="chat-input chat-message" required/>
                     <input class="btn btn-success" type="submit" id="btnSend" style="margin: 0" name="send-chat-message" value="Gönder" >
                 </form>
@@ -93,13 +102,15 @@
         new GreenAudioPlayer('.ready-player-1', { showTooltips: true, showDownloadButton: false, enableKeystrokes: true });
     });
 
-    reload_player_info();
-    setInterval(reload_player_info,5000);
+    $(document).ready(function () {
+        reload_player_info();
+        setInterval(reload_player_info,5000);
+    });
 
     function reload_player_info() {
 
         $.ajax({
-            url: "test/get_info.php?json=1",
+            url: "admin/ajax/get_info?json=1",
             success: function (data) {
                 //$("span.controls__current-time").text();
                 $("img.artwork").attr("src", data.album_img);
@@ -135,9 +146,7 @@
 
 </script>
 <script>
-    function showMessage(messageHTML) {
-        $('#chat-box').append(messageHTML);
-    }
+
 
     $(document).ready(function(){
 
@@ -158,9 +167,12 @@
     });
 
 
+function showMessage(messageHTML) {
+    $('#chat-box').append(messageHTML);
+}
 
 function establish_connection(){
-    var websocket = new WebSocket("ws://radyokermes.com:8090");
+    var websocket = new WebSocket("ws://165.22.30.128:8090?user=mert");
 
     websocket._original_send_func = websocket.send;
     websocket.send = function(data) {
@@ -177,8 +189,15 @@ function establish_connection(){
 
     websocket.onmessage = function(event) {
         var Data = JSON.parse(event.data);
-        showMessage("<div class='chat_message "+Data.message_type+"'>"+Data.message+"</div>");
-        $('#chat-message').val('');
+
+        if(Data.message_type === "chat-connection-ack"){
+            $('#clients-box').append("<div class='chat_message "+Data.message_type+"'>"+Data.message+"</div>");
+            $('#chat-box').append("<div class='chat_message "+Data.message_type+"'>"+Data.message+" Kanala Bağlandı</div>");
+        }else if(Data.message_type  === "chat-box-html"){
+            $('#chat-box').append("<div class='chat_message "+Data.message_type+"'>"+Data.message+"</div>");
+        }
+        // $('#chat-box').append("<div class='chat_message "+Data.message_type+"'>"+Data.message+"</div>");
+
         $('#btnSend').blur();
         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
@@ -200,6 +219,8 @@ function establish_connection(){
             chat_message: $('#chat-message').val()
         };
         websocket.send(JSON.stringify(messageJSON));
+        $('#chat-message').val('');
+
     });
 }
 

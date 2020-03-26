@@ -5,8 +5,8 @@
  * Date: 10/05/2018
  * Time: 16:36
  */
-include("../../../../inc/loader.php");
-    if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/users/list"){
+include("../../../inc/loader.php");
+    if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/admin/users/list"){
         http_response_code(400);
         include "../pages/404.php";
         exit;
@@ -141,7 +141,7 @@ if(!is_authorized($userInfo["authority"], array("Admin", "Moderator"))){
                     <div class="bgc-white bd bdrs-3 p-20 mB-20">
                         <h4 class="c-grey-900 mT-10 mB-30">Edit User</h4>
 
-                        <form id="user_edit_form" action="/ajax/user-edit" method="POST"  class="needs-validation" autocomplete="off" novalidate>
+                        <form id="user_edit_form" action="/admin/ajax/user-edit" method="POST"  class="needs-validation" autocomplete="off" novalidate>
 
                             <fieldset>
 
@@ -261,7 +261,7 @@ if(!is_authorized($userInfo["authority"], array("Admin", "Moderator"))){
                 if(a){
                     $.ajax({
                         type: "POST",
-                        url: "/ajax/user-delete",
+                        url: "/admin/ajax/user-delete",
                         data: {"user_id":id},
                         error:function () {
                             alert("An Error Occured.");
@@ -290,7 +290,7 @@ if(!is_authorized($userInfo["authority"], array("Admin", "Moderator"))){
 
         </script>
 
-        <script src="/js/form-validator.js"></script>
+        <script src="/admin/js/form-validator.js"></script>
         <script>
             form_validate({
                 do_before: function(){

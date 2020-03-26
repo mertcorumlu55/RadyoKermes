@@ -10,7 +10,7 @@ try{
 
 }catch (PDOException $e){
     http_response_code(503);
-    die('<h1>Database Connection Failed<h1/>');
+    die('<h1>Database Connection Failed<h1/>'.$e->getMessage());
 }
 
 /*LOAD CLASSES*/

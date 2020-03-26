@@ -10,13 +10,13 @@
                 <div class="peer peer-greed">
                     <a class="sidebar-link td-n" href="/">
                         <div class="peers ai-c fxw-nw">
-                            <div class="peer" >
+                            <!--<div class="peer" >
                                 <div class="logo">
                                     <img src="/app/img/logo_no_text_rgb.png" alt="Logo" >
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="peer peer-greed">
-                                <h5 class="lh-1 mB-0 logo-text" style="color:#72777a; text-align: center">UNIVERSE!</h5>
+                                <h5 class="lh-1 mB-0 logo-text" style="color:#72777a; text-align: center; padding: 0.63em 3em;">Radyo Kermes</h5>
                             </div>
                         </div>
                     </a>
@@ -36,23 +36,23 @@
         <ul class="sidebar-menu scrollable pos-r">
 
             <li class="nav-item mT-30 active">
-                <a class="sidebar-link" href="/">
+                <a class="sidebar-link" href="/admin">
                 <span class="icon-holder">
                   <i class="c-purple-500 fa fa-home"></i>
                 </span>
-                    <span class="title">Home</span>
+                    <span class="title">Genel Bakış</span>
                 </a>
             </li>
 
 
-            <li class="nav-item">
-                <a class="sidebar-link" href="/posts">
+            <!--<li class="nav-item">
+                <a class="sidebar-link" href="/admin/posts">
                 <span class="icon-holder">
                   <i class="c-purple-500 fa fa-file"></i>
                 </span>
                     <span class="title">Posts</span>
                 </a>
-            </li>
+            </li>-->
 
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
@@ -67,11 +67,11 @@
                 </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="sidebar-link" href="/users/list">List Users</a>
+                            <a class="sidebar-link" href="/admin/users/list">List Users</a>
                         </li>
 
                         <li>
-                            <a class="sidebar-link" href="/users/add">Add New User</a>
+                            <a class="sidebar-link" href="/admin/users/add">Add New User</a>
                         </li>
 
                     </ul>
@@ -82,7 +82,7 @@
 
 
             <li class="nav-item">
-                <a class="sidebar-link" href="/settings">
+                <a class="sidebar-link" href="/admin/settings">
                 <span class="icon-holder">
                   <i class="c-purple-500 fa fa-cog"></i>
                 </span>

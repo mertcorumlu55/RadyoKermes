@@ -1,6 +1,8 @@
 <?php
+include("../../../inc/loader.php");
+
 error_reporting(0);
-$status="http://radyokermes.com:8000/statistics?json=1";
+$status="http://{$auth_config->radio_server}:{$auth_config->radio_port}/statistics?json=1";
 
     $fp=json_decode(file_get_contents($status));
     if(!$fp){
@@ -20,12 +22,12 @@ $status="http://radyokermes.com:8000/statistics?json=1";
     $json["bitrate"]=$data->bitrate;
     $json["uptime"]=$data->streamuptime;
     $json["activeStreams"]=$fp->activestreams;
-   if(!empty($itunes) || !empty($spotify) ){
-       $json["artist"]=$itunes[0]["artistName"];
-       $json["track"]=$itunes[0]["trackName"];
-       $json["album"]=$itunes[0]["collectionName"];
-       $json["album_img"]=$itunes[0]["artworkUrl100"];
-       $json["itunes_url"]=$itunes[0]["trackViewUrl"];
+   if($itunes["resultCount"] != 0 || !empty($spotify) ){
+       $json["artist"]=$itunes["results"][0]["artistName"];
+       $json["track"]=$itunes["results"][0]["trackName"];
+       $json["album"]=$itunes["results"][0]["collectionName"];
+       $json["album_img"]=$itunes["results"][0]["artworkUrl100"];
+       $json["itunes_url"]=$itunes["results"][0]["trackViewUrl"];
        //$json["spotify_url"]=$spotify['tracks']['items'][0]['external_urls']['spotify'];
 
    }else{
@@ -52,7 +54,7 @@ $status="http://radyokermes.com:8000/statistics?json=1";
         }
         $array = json_decode($fp, true);
 
-        return $array["results"];
+        return $array;
 
     }
 

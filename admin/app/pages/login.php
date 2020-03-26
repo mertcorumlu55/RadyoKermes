@@ -9,10 +9,10 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
 
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/bootstrap-formhelpers.css">
-    <link rel="stylesheet" href="/css/stylesheet.css"/>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-formhelpers.css">
+    <link rel="stylesheet" href="css/stylesheet.css"/>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -31,17 +31,10 @@
     });
 </script>
 <div class="peers ai-s fxw-nw h-100vh">
-    <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("/img/login_background.jpg")'>
-        <div class="pos-a centerXY">
-            <div class="bgc-white bdrs-50p pos-r" style='width: 300px; height: 300px;'>
-                <img class="pos-a centerXY" src="/img/logo_rgb.png" style='width: 230px; height: auto;' alt="LOGO">
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r m-auto" style='min-width: 320px;'>
         <h4 class="fw-300 c-grey-900 mB-40">Admin Login</h4>
 
-        <form action="/ajax/login" method="POST" id="login_form" class="needs-validation not-valid"  novalidate>
+        <form action="ajax/login" method="POST" id="login_form" class="needs-validation not-valid"  novalidate>
             <fieldset>
 
                 <div class="alert message" style="display: none"></div>
@@ -79,32 +72,33 @@
             </fieldset>
         </form>
 
-        <script src="/js/form-validator.js"></script>
-        <script>
-            form_validate({
-                do_before: function(){
-                    grecaptcha.reset();
-                },
-                do_error: function(){},
-                do_success: function(data){
-                    if(data.captcha === "verify"){
-                        $(".captcha").removeClass("d-none");
-                    }else if(data.captcha === "allow"){
-                        $(".captcha").addClass("d-none");
-                    }
-                },
-                error_true: function(data){
-                    $(".alert.message").removeClass("alert-success").addClass("alert-danger").html(data.message).slideDown();
-                },
-                error_false: function (data) {
-                    $("form.needs-validation").addClass("alert alert-success").html(data.message).slideDown();
-                    location.reload();
-                }
-            });
-        </script>
+
 
     </div>
 </div>
-<script src="/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/form-validator.js"></script>
+<script>
+    form_validate({
+        do_before: function(){
+            grecaptcha.reset();
+        },
+        do_error: function(){},
+        do_success: function(data){
+            if(data.captcha === "verify"){
+                $(".captcha").removeClass("d-none");
+            }else if(data.captcha === "allow"){
+                $(".captcha").addClass("d-none");
+            }
+        },
+        error_true: function(data){
+            $(".alert.message").removeClass("alert-success").addClass("alert-danger").html(data.message).slideDown();
+        },
+        error_false: function (data) {
+            $("form.needs-validation").addClass("alert alert-success").html(data.message).slideDown();
+            location.reload();
+        }
+    });
+</script>
 </body>
 </html>

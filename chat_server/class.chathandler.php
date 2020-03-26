@@ -68,7 +68,7 @@ class ChatHandler {
 	}
 	
 	function newConnectionACK($client_ip_address) {
-		$message = $client_ip_address.' Kanala Bağlandı';
+		$message = $client_ip_address;
 		$messageArray = array('message'=>$message,'message_type'=>'chat-connection-ack');
 		$ACK = $this->seal(json_encode($messageArray));
 		return $ACK;

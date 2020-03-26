@@ -5,8 +5,8 @@
  * Date: 10/05/2018
  * Time: 16:36
  */
-include("../../../../inc/loader.php");
-if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/settings"){
+include("../../../inc/loader.php");
+if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/admin/settings"){
     http_response_code(400);
     include "../pages/404.php";
     exit;
@@ -61,6 +61,11 @@ if(!is_authorized($userInfo["authority"], array("Admin"))){
         $updateArray["recaptcha_secret_key"] = post("recaptcha_secret_key");
         $updateArray["fb_app_id"] = post("fb_app_id");
         $updateArray["fb_app_secret"] = post("fb_app_secret");
+        $updateArray["radio_server"] = post("radio_server");
+        $updateArray["radio_port"] = post("radio_port");
+        $updateArray["radio_passwordr"] = post("radio_password");
+        $updateArray["ipgeolocation_apikey"] = post("ipgeolocation_apikey");
+
 
 
         foreach ( $updateArray as $key => $value) {

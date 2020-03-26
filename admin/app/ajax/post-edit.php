@@ -1,7 +1,7 @@
 <?php
-include("../../../../inc/loader.php");
+include("../../../inc/loader.php");
 
-if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/posts/list"){
+if(parse_url(@$_SERVER["HTTP_REFERER"])["path"] != "/admin/posts/list"){
     http_response_code(400);
     exit;
 }
@@ -91,7 +91,7 @@ try{
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <h4 class="c-grey-900 mT-10 mB-30">Edit Post</h4>
 
-                    <form id="post_answer_form" action="/ajax/post-answer" method="POST"  class="needs-validation" autocomplete="off" novalidate>
+                    <form id="post_answer_form" action="/admin/ajax/post-answer" method="POST"  class="needs-validation" autocomplete="off" novalidate>
 
                         <fieldset>
 
@@ -156,7 +156,7 @@ try{
             if(a){
                 $.ajax({
                     type: "POST",
-                    url: "/ajax/post-delete",
+                    url: "/admin/ajax/post-delete",
                     data: {"post_id":id},
                     error:function () {
                         alert("An Error Occured.");
@@ -173,7 +173,7 @@ try{
         }
     </script>
 
-    <script src="/js/form-validator.js"></script>
+    <script src="/admin/js/form-validator.js"></script>
     <script>
         form_validate({
             do_before: function(){

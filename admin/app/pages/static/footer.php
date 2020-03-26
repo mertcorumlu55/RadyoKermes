@@ -20,13 +20,13 @@
 </div>
 </div>
 
-<script src="/app/js/javascript.js"></script>
-<script type="text/javascript" src="/app/js/sidebar.js"></script>
-<script src="/app/js/bootstrap-formhelpers.min.js"></script>
-<script type="text/javascript" src="/app/css/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/app/css/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="/app/css/Responsive-2.2.1/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="/app/css/Responsive-2.2.1/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin/app/js/javascript.js"></script>
+<script type="text/javascript" src="/admin/app/js/sidebar.js"></script>
+<script src="/admin/app/js/bootstrap-formhelpers.min.js"></script>
+<script type="text/javascript" src="/admin/app/css/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/app/css/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="/admin/app/css/Responsive-2.2.1/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="/admin/app/css/Responsive-2.2.1/js/responsive.bootstrap4.min.js"></script>
 
 
 
