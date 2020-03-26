@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ajax\/([a-zA-Z0-9\-_]*)$ app/ajax/$1.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^js\/([a-zA-Z0-9\-\.\/_]*)$ app/js/$1 [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^css\/([a-zA-Z0-9\-\.\/_]*)$ app/css/$1 [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^img\/([a-zA-Z0-9\-\.\/_]*)$ app/img/$1 [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9\-]*)\/?([a-zA-Z0-9\-]*)?$ ?page=$1&subpage=$2 [NC,L]
+ErrorDocument 404 /app/pages/404.php
+ErrorDocument 403 /app/pages/403.php
+ErrorDocument 400 /app/pages/404.php
+
+
