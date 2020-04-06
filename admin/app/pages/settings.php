@@ -118,6 +118,17 @@
                                     </div>
                                 </div>
 
+                                <h4 class="c-grey-900 mT-10 mB-30">Chat Server</h4>
+                                <div class="form-group row">
+
+                                    <label for="" class="col-sm-2 col-form-label"><strong>Server</strong></label>
+
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="chat_server" value="<?=$content["chat_server"]?>" required/>
+                                        <small>Chat WebSocket Adress</small>
+                                    </div>
+                                </div>
+
                                 <hr>
 
                                 <h4 class="c-grey-900 mT-10 mB-30">IpGeoLocation API Key</h4>

@@ -168,3 +168,19 @@
   position: absolute;
   width: 1px;
   word-wrap: normal; }
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .green-audio-player .controls .controls__slider{
+    display: none
+  }
+
+  .green-audio-player .controls{
+    height: 100%;
+  }
+
+  .green-audio-player{
+    padding-right: 10px;
+    padding-left: 15px
+  }
+}

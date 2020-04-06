@@ -1,5 +1,5 @@
 <main class="main-content bgc-grey-100">
-    <div class="alert alert-success" id="snackbar">Some text some message..</div>
+    <div id="snackbar"></div>
     <div id="mainContent">
 
         <div class="container-fluid" style="padding:0;">
@@ -7,7 +7,12 @@
     <div class="row gap-20 masonry pos-r">
 
         <!--SERVER INFO-->
-        <div class="masonry-item  w-100">
+        <div class="masonry-item w-100 server-info position-relative">
+            <div class="loading d-none">
+                <div class="loading-holder">
+                    <i class="fa fa-circle-o-notch fa-spin "></i>
+                </div>
+            </div>
             <div class="row gap-20">
                 <!-- #SUNUCU DURUMU ==================== -->
                 <div class='col-md-3'>
@@ -18,7 +23,7 @@
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong class="text-success">ONLINE</strong></p>
+                                    <p class="text-center"><strong id="radio_server_status">-</strong></p>
                                 </div>
 
                             </div>
@@ -35,7 +40,7 @@
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong id="listeners">-/512</strong></p>
+                                    <p class="text-center"><strong id="listeners">-/512</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -46,12 +51,12 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Çalan Şarkı</h6>
+                            <h6 class="lh-1">Başlık</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong id="song">-</strong></p>
+                                    <p class="text-center"><strong id="song">-</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -62,12 +67,12 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">AutoDJ(TEST AŞAMASINDA)</h6>
+                            <h6 class="lh-1">AutoDJ</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
-                                    <p class="alert text-center"><strong>ON</strong></p>
+                                    <p class="text-center"><strong id="autodj_status">-</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -76,22 +81,50 @@
             </div>
         </div>
 
+        <!--Radyo Konu-->
+        <div class="masonry-item  w-100 radyo-konu" style="display: none">
+            <div class="row gap-20">
+                <!-- #RADIO ==================== -->
+                <div class='col-md-12'>
+                    <div class="layers bd bgc-white p-20">
+                        <div class="layer w-100 mB-10">
+                            <h6 class="lh-1">Yayın: <span class="text-success">AÇIK</span></h6>
+                        </div>
+                        <div class="layer w-100">
+                            <div class="peers ai-sb fxw-nw">
+                                <div class="peer peer-greed pl-5 pr-5">
+                                    <div class="holder m-auto pl-5 pr-5">
+                                        <form class="form d-flex w-100" id="radyo_konu">
+                                            <label for="radyo_konu_text" class="m-0">Yayın Başlığı</label><input type="text" class="form-control" id="radyo_konu_text" name="radyo_konu" placeholder="Konu" value="<?=$auth_config->radyo_konu?>" />
+                                            <button type="submit" class="btn btn-primary ml-1" id="radyo_konu_button">Güncelle</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!--SERVER ACTIONS-->
         <div class="masonry-item  w-100">
             <div class="row gap-20">
-                <!-- #SUNUCU ==================== -->
-                <div class='col-md-6'>
+                <!-- #RADIO ==================== -->
+                <div class='col-md-4'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">SUNUCU (TEST AŞAMASINDA)</h6>
+                            <h6 class="lh-1">Radyo Sunucusu</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
                                 <div class="peer peer-greed">
                                     <div class="holder m-auto" style="width: fit-content;">
-                                        <button class="btn btn-success server-button" id="server_start">Sunucuyu Başlat</button>
-                                        <button class="btn btn-danger" id="server_stop">Sunucuyu Durdur</button>
-                                        <button class="btn btn-warning" id="server_restart">Sunucuyu Yeniden Başlat</button>
+                                        <button class="btn btn-success radio-server-button" id="radio_server_start">Başlat</i></button>
+                                        <button class="btn btn-danger radio-server-button" id="radio_server_stop">Durdur</button>
+                                        <button class="btn btn-warning radio-server-button" id="radio_server_restart">Yeniden Başlat</button>
                                     </div>
                                 </div>
 
@@ -101,17 +134,18 @@
                 </div>
 
                 <!-- #AUTODJ ==================== -->
-                <div class='col-md-6'>
+                <div class='col-md-4'>
                             <div class="layers bd bgc-white p-20">
                                 <div class="layer w-100 mB-10">
-                                    <h6 class="lh-1">AUTODJ (TEST AŞAMASINDA)</h6>
+                                    <h6 class="lh-1">AutoDJ</h6>
                                 </div>
                                 <div class="layer w-100">
                                     <div class="peers ai-sb fxw-nw">
                                         <div class="peer peer-greed">
                                             <div class="holder m-auto" style="width: fit-content;">
-                                                <button class="btn btn-success">AutoDJ Başlat</button>
-                                                <button class="btn btn-danger">AutoDJ Durdur</button>
+                                                <button class="btn btn-success autodj-button" id="autodj_start">Başlat</button>
+                                                <button class="btn btn-danger autodj-button" id="autodj_stop">Durdur</button>
+                                                <button class="btn btn-warning autodj-button" id="autodj_restart">Yeniden Başlat</button>
                                             </div>
                                         </div>
                                     </div>
@@ -119,11 +153,66 @@
                             </div>
                         </div>
 
+                <!-- #ChatServer ==================== -->
+                <div class='col-md-4'>
+                    <div class="layers bd bgc-white p-20">
+                        <div class="layer w-100 mB-10">
+                            <h6 class="lh-1">Chat Server</h6>
+                        </div>
+                        <div class="layer w-100">
+                            <div class="peers ai-sb fxw-nw">
+                                <div class="peer peer-greed">
+                                    <div class="holder m-auto" style="width: fit-content;">
+                                        <button class="btn btn-success chat-server-button" id="chat_server_start">Başlat</button>
+                                        <button class="btn btn-danger chat-server-button" id="chat_server_stop">Durdur</button>
+                                        <button class="btn btn-warning chat-server-button" id="chat_server_restart">Yeniden Başlat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--CHAT-->
+        <div class="masonry-item col-12 listener-info position-relative">
+
+            <!-- #Site Visits ==================== -->
+            <div class="bd bgc-white">
+                <div class="peers fxw-nw@lg+ ai-s">
+                    <div class="peer peer-greed w-100p@lg+ w-100@lg- p-20">
+                    <div class="chat-server-status p-10 border mb-2 mt-2" style="border-radius: 4px">Chat Server: <strong id="chat_server_status">-</strong></div>
+                        <div class="col-12 chatbox p-0 mb-5" style="position: relative">
+
+
+                            <div class="row">
+                                <div class="col-9 pr-0">
+                                    <div id="chat-box"></div>
+                                </div>
+                                <div class="col-3 pl-0">
+                                    <div id="online-clients-box"></div>
+                                </div>
+                            </div>
+                            <form style="text-align: left;" name="frmChat" id="frmChat">
+                                <input type="text" name="chat-message" id="chat-message" placeholder="Mesaj"  class="chat-input chat-message" required/>
+                                <input class="btn btn-success" type="submit" id="btnSend" style="margin: 0" name="send-chat-message" value="Gönder" >
+                             </form>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
 
         <!--LISTENER INFO-->
-        <div class="masonry-item col-12">
+        <div class="masonry-item col-12 listener-info position-relative">
+            <div class="loading d-none">
+                <div class="loading-holder">
+                    <i class="fa fa-circle-o-notch fa-spin "></i>
+                </div>
+            </div>
             <!-- #Site Visits ==================== -->
             <div class="bd bgc-white">
                 <div class="peers fxw-nw@lg+ ai-s">
@@ -162,91 +251,3 @@
         </div>
     </div>
 </main>
-<script src="/admin/app/js/jquery-jvectormap-2.0.5.min.js"></script>
-<script src="/admin/app/js/jquery-jvectormap-world-merc.js"></script>
-<script>
-
-        $(document).ready( function () {
-            var dataTable = $('#peers').DataTable({
-                "bPaginate": true,
-                "bLengthChange": false,
-                "searching": false,
-                pageLength: 9
-            });
-
-            $('#world-map-marker').vectorMap({
-                map: 'world_merc',
-                backgroundColor:"#fff",
-                borderColor:"#fff",
-                borderOpacity:.25,
-                borderWidth:0,
-                color:"#e6e6e6",
-                regionStyle:{initial:{fill:"#e4ecef"}},
-                markerStyle:{
-                    initial:{
-                        r:4,
-                        fill:"#fff",
-                        "fill-opacity":1,
-                        stroke:"#000",
-                        "stroke-width":2,
-                        "stroke-opacity":.4
-                    }},
-                series:{regions:[{values:{TR:120},scale:["#9c27b0","#a741b0"]}]},
-                normalizeFunction:"polynomial",
-                hoverOpacity:null,
-                zoomOnScroll:!1,
-                scaleColors:["#b6d6ff","#005ace"],
-                selectedColor:"#dc53df",
-                enableZoom:!1,
-                hoverColor:"#fff"
-            });
-            var mapObj = $('#world-map-marker').vectorMap('get', 'mapObject');
-            mapObj.setFocus({scale: 8, region:"TR", animate: true});
-
-            get_radio_data(dataTable,mapObj);
-            setInterval(function () {
-                get_radio_data(dataTable,mapObj);
-            },10000);
-
-
-            $("button.server-button").on("click",function (e) {
-                e.preventDefault();
-                snackbar_toggle();
-            });
-
-
-        });
-
-        function get_radio_data(dataTable,mapObj){
-
-
-            $.ajax({
-                url: "/admin/ajax/get_info?json=1",
-                success:function (data) {
-                    $("#listeners").text(data.listeners + "/512");
-                    $("#song").text(data.track);
-
-                }
-
-                });
-
-        $.ajax({
-            url: "/admin/ajax/listener-information",
-            success:function (data) {
-                var markers = [];
-                dataTable.clear();
-                $.each(data,function(key,ipinfo){
-                    markers.push({ latLng: [ipinfo.latitude, ipinfo.longitude], name: ipinfo.ip+" | "+ ipinfo.useragent });
-                    dataTable.row.add([ipinfo.country,ipinfo.ip,ipinfo.useragent]);
-                });
-
-                mapObj.addMarkers(markers,[]);
-                dataTable.draw();}
-        });
-
-        }
-
-
-    </script>
-
-

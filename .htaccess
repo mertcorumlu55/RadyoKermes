@@ -8,6 +8,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^admin\/js\/([a-zA-Z0-9\-\.\/_]*)$ admin/app/js/$1 [NC,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^js\/([a-zA-Z0-9\-\.\/_]*)\.js$ js/$1.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^admin\/css\/([a-zA-Z0-9\-\.\/_]*)$ admin/app/css/$1 [NC,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

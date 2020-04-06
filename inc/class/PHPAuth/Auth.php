@@ -568,6 +568,32 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         return false;
     }
 
+    public function checkSessionSimple($hash){
+        try{
+            // INET_NTOA(ip)
+            $query = "SELECT id FROM {$this->config->table_sessions} WHERE hash = :hash";
+            $query_prepared = $this->dbh->prepare($query);
+            $query_params = [
+                'hash' => $hash
+            ];
+            $query_prepared->execute($query_params);
+
+            if ($query_prepared->rowCount() != 0) {
+                return 1;
+            }
+
+            return 0;
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return 0;
+        }
+
+
+
+
+
+    }
+
     /**
     * Retrieves the UID associated with a given session hash
     * @param string $hash

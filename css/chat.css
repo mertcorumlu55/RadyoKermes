@@ -1,0 +1,146 @@
+#chat-message {
+    outline:0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+#btnSend{
+    width: 100%;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    height: 3em;
+    border-left: 1px solid whitesmoke;
+}
+
+#btnSend:focus{
+    box-shadow: none !important;
+}
+#chat-box {
+    background: #fff8f8;
+    border: 1px solid #ffdddd;
+    border-top-left-radius: 4px;
+    height: 350px;padding: 10px;
+    overflow: auto;
+}
+#online-clients-box{
+    background: #fff8f8;
+    border: 1px solid #ffdddd;
+    border-top-right-radius: 4px;
+    height: 350px;padding: 10px;
+    overflow: auto;
+}
+
+.online-client{
+    font-size: 1em;
+    font-weight: bold;
+    padding: 7px;
+    border: 1px solid #ffdddd;
+    background-color: #fff;
+    word-break: normal;
+
+}
+
+.chat-box-message{
+    display: flex;
+    margin: 10px 0;
+    font-size:0.8em;
+    background: whitesmoke;
+}
+.chat-box-message-user{
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ffdddd;
+    border-radius:4px;
+    display: inline-block;
+    font-size: 1.7em;
+    margin-right: 0.4em;
+    word-break: normal;
+}
+
+.chat-box-message-text{
+    display:inline-block;
+    font-size: 1.3em;
+    padding: 0.6em;
+    word-break: break-all;
+}
+
+.error {color:#FF0000;}
+.chat-connection-ack{color: #26af26;}
+.chat-input{border: 1px solid #ffdddd;border-top: 0;width: 100%;box-sizing: border-box;padding: 10px 8px;color: #191919;
+}
+
+.error {color:#FF0000;}
+.chat-connection-ack{color: #26af26;}
+
+.delete-message{
+
+    margin-left:auto
+}
+
+.ban-user:hover{
+    cursor: pointer;
+}
+
+#frmChat{
+    position: relative;
+}
+
+.username_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.36);
+    z-index: 999
+}
+.username_inner {
+    display: flex;
+    height: 100%
+}
+
+.username_inputs{
+    width: fit-content;
+    margin: auto;
+}
+
+.username_container input{
+    width: auto;
+    float: left;
+    margin: 0;
+}
+
+.chatbox{
+    position: relative;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* Styles */
+    .online-client{
+        font-size: 3vw;
+        padding: 1vw;
+    }
+
+    #online-clients-box{
+        padding: 0.5vw
+    }
+
+    #chat-box{
+        padding: 1vw
+    }
+
+    .chat-box-message-user{
+        margin-right: 5px;
+        font-size: 3vw;
+        padding: 1vw;
+        font-weight: 700;
+    }
+
+    .chat-box-message-text{
+        font-size: 3.5vw;
+        padding: 0.6vw
+    }
+
+    .chat-message.text-danger{
+        font-size: 3.5vw;
+    }
+
+}

@@ -63,7 +63,8 @@ if(!is_authorized($userInfo["authority"], array("Admin"))){
         $updateArray["fb_app_secret"] = post("fb_app_secret");
         $updateArray["radio_server"] = post("radio_server");
         $updateArray["radio_port"] = post("radio_port");
-        $updateArray["radio_passwordr"] = post("radio_password");
+        $updateArray["radio_password"] = post("radio_password");
+        $updateArray["chat_server"] = post("chat_server");
         $updateArray["ipgeolocation_apikey"] = post("ipgeolocation_apikey");
 
 

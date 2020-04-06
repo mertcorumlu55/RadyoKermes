@@ -15,7 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?=$auth_config->site_title." | ".ucfirst($page_name)?></title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/admin/css/bootstrap.css">
     <link rel="stylesheet" href="/admin/css/bootstrap-formhelpers.css">

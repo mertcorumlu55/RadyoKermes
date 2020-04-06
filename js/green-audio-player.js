@@ -118,7 +118,7 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
           self.hasSetAttribute(self.playPauseBtn, 'title', self.labels.pause);
         }).catch(function () {
           // eslint-disable-next-line no-console
-          console.error('Green Audio Player Error: Autoplay has been prevented, because it is not allowed by this browser.');
+          console.error('Autoplay error: Tarayıcınız autoplay özelliğini desteklemiyor.');
         });
       }
     }

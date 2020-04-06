@@ -28,9 +28,6 @@
 <script type="text/javascript" src="/admin/app/css/Responsive-2.2.1/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="/admin/app/css/Responsive-2.2.1/js/responsive.bootstrap4.min.js"></script>
 
-
-
-
 <?=$footer."\n"?>
 
 </body>

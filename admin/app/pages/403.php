@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>403</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/stylesheet.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/img/favicon.ico" />
+    <link rel="stylesheet" href="/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/admin/css/stylesheet.css"/>
 </head>
 <body class="app">
 <div class='pos-a t-0 l-0 bgc-white w-100 h-100 d-f fxd-r fxw-w ai-c jc-c pos-r p-30'>
     <div class='mR-60'>
-        <img alt='#' src='/img/broken_key.png' />
+        <img alt='#' src='/admin/img/broken_key.png' />
     </div>
 
     <div class='d-f jc-c fxd-c'>

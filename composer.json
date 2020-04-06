@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "jcrowe/bad-word-filter": "2.2.*"
+    },
+    "require": {
+        "cboden/ratchet": "^0.4.2",
+      "ext-json": "*",
+      "ext-simplexml": "*",
+      "ext-pdo": "*",
+      "ext-gd": "*",
+      "ext-gmp": "*"
+    }
+}
