@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+
+ 
+# The init commands
+case "$1" in
+        radio_server)
+                pgrep -x icecast2 >/dev/null && echo '{"online":"1"}' || echo '{"online":"0"}'
+                ;;
+        autodj)
+                pgrep -x ezstream >/dev/null && echo '{"online":"1"}' || echo '{"online":"0"}'
+                ;;
+	chat_server)
+                nc -z -w1 localhost 8090 >/dev/null && echo '{"online":"1"}' || echo '{"online":"0"}'
+                ;;
+        
+        *)
+              
+                echo "$0 {radio_server | autodj | chat_server}"
+                exit 1
+                ;;
+esac
