@@ -36,7 +36,7 @@ if($auth->isBlocked() == "verify"){
 }
 
 //MAKE LOGIN WITH PHPAUTH
-$return = $auth->login(post("user_email"),post("user_password"),(int) post("remember_me"),  post("g-recaptcha-response"));
+$return = $auth->login(post("user_email"),post("user_password"),(bool) (post("remember_me") == "1" ? 1 : 0),  post("g-recaptcha-response"));
 
 //SEND JS CAPTCHA STATUS
 $return["captcha"] = $auth->isBlocked();

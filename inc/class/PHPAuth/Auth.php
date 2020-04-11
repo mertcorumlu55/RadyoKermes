@@ -549,16 +549,15 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
 
         if ($currentdate > $expiredate) {
             $this->deleteSession($hash);
-
             return false;
         }
 
-        if ($ip != $db_ip) {
+        /*if ($ip != $db_ip) {
             return false;
-        }
+        }*/
 
         if ($db_cookie == sha1($hash . $this->config->site_key)) {
-            if ($expiredate - $currentdate < strtotime($this->config->cookie_renew) - $currentdate) {
+            if ($expiredate < strtotime($this->config->cookie_renew)) {
                 $this->deleteSession($hash);
                 $this->addSession($uid, false);
             }

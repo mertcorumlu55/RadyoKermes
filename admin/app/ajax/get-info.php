@@ -1,7 +1,7 @@
 <?php
 include("../../../inc/loader.php");
 
-//error_reporting(0);
+error_reporting(0);
 $status="http://{$auth_config->radio_server}:{$auth_config->radio_port}/status-json.xsl";
 $mounts_url="http://{$auth_config->radio_server}:{$auth_config->radio_port}/admin/listmounts";
 $online = false;

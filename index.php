@@ -49,7 +49,12 @@
 
 
                 <div class="col-12 chatbox p-0 mb-3" style="position: relative">
-
+                    <div class="file-dragover d-none">
+                        <div class="file-dragover-inner">
+                            <i class="fa fa-cloud-upload"></i>
+                            <p>Resmi Yüklemek İçin Sürükleyip Bırakın</p>
+                        </div>
+                    </div>
                     <div class="username_container">
                         <div class="username_inner">
                             <div class="username_inputs">
@@ -70,7 +75,16 @@
                             <div id="online-clients-box"></div>
                         </div>
                     </div>
-                    <input type="text" name="chat-message" id="chat-message" placeholder="Mesaj"  class="chat-input chat-message" required/>
+                    <div class="images-to-send d-none">
+
+                    </div>
+                    <label class="chat-input" for="chat-message">
+                        <input type="text" name="chat-message" id="chat-message" placeholder="Mesaj" class="chat-input chat-message" />
+                        <span class="file-wrapper">
+                          <input type="file" id="file_image" name="image" accept=".jpg,.png,.jpeg" multiple/>
+                          <span class="button fa fa-image"> </span>
+                        </span>
+                    </label>
                     <input class="btn btn-success" type="submit" id="btnSend" style="margin: 0" name="send-chat-message" value="Gönder" >
                 </form>
 

@@ -59,8 +59,12 @@ class ChatServer implements MessageComponentInterface {
                 break;
 
                 case "chat_message":
-                    $this->chatMessage($conn, $data, $user);
+                    $this->chatMessage($conn, $data, $user, false);
                 break;
+
+                case "chat_message_img":
+                    $this->chatMessage($conn, $data, $user, true);
+                    break;
 
                 case "fetch":
                     $this->fetchMessages($conn);
@@ -121,7 +125,7 @@ class ChatServer implements MessageComponentInterface {
         $this->isBanned($conn);
     }
 
-    private  function chatMessage($conn, $data, $user){
+    private  function chatMessage($conn, $data, $user, $with_image){
         if($this->isSpam($conn)){return;}
 
         $msg = htmlspecialchars($data['data']['msg']);
@@ -131,15 +135,31 @@ class ChatServer implements MessageComponentInterface {
         $uniqid = uniqid();
 
         try{
-            $sql = $this->dbh->prepare("INSERT INTO `chat_log` (`ip` , `uniqid`, `name`, `color`, `msg`) VALUES(?, ?, ?, ?, ?)");
-            $sql->execute(array($user_ip,$uniqid,$user, $user_color, $msg));
+            $sql = $this->dbh->prepare("INSERT INTO `chat_log` (`ip` , `uniqid`, `with_image`, `name`, `color`, `msg`) VALUES(?, ?, ?, ?, ?, ?)");
+            $sql->execute(array($user_ip,$uniqid, ($with_image?1:0),$user, $user_color, $msg));
+            $id = $this->dbh->lastInsertId();
+            $send_type = "single";
+
+            $img_array = array();
+            if($with_image){
+                $send_type = "single_with_image";
+                foreach ($data["data"]["images"] as $value){
+                    $sql = $this->dbh->prepare("UPDATE `chat_images` SET message_id = :id WHERE id = :img_id");
+                    $sql->execute(array(
+                        "id" => $id,
+                        "img_id" => $value["img_id"]
+                    ));
+                    array_push($img_array, $value["img_path"]);
+                }
+
+            }
 
             foreach ($this->clients as $client => $conn) {
                 $msg_tosend = $msg_filtered;
                 if($this->users[$conn->resourceId]["is_admin"]){
                     $msg_tosend = $msg;
                 }
-                $this->send($conn, "single", array("uniqid" => $uniqid, "name" => $user, "color" => $user_color, "message" => $msg_tosend, "date" => date("Y-m-d H:i:s")));
+                $this->send($conn, $send_type, array("uniqid" => $uniqid, "name" => $user, "color" => $user_color, "message" => $msg_tosend, "date" => date("Y-m-d H:i:s"), "images" => $img_array));
             }
 
         }catch (PDOException $e){
@@ -236,7 +256,19 @@ class ChatServer implements MessageComponentInterface {
 	private function getSqlMessages($conn){
         try{
             $sql = $this->dbh->query("SELECT * FROM `chat_log`");
-            $msgs = $sql->fetchAll();
+            $msgs = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($msgs as $key => $value){
+                if($value["with_img"] == "1"){
+                    $sql1 = $this->dbh->query("SELECT * FROM `chat_images` WHERE message_id=".$value["id"]);
+                    $imgs = $sql1->fetchAll(PDO::FETCH_ASSOC);
+                    $images_array = array();
+                    foreach ( $imgs as $value1){
+                        array_push($images_array,$value1["name"]);
+                    }
+                    $msgs[$key]["images"] = $images_array;
+                }
+            }
             return $msgs;
         }catch (PDOException $e){
             $this->sendError($conn, $e->getMessage());

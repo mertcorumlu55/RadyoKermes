@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="7f637acf-8be0-4ace-b69e-dd5c63e8485e" name="RadyoKermes" url="http://167.71.49.254/">
-        <fileTransfer host="134.122.74.135" port="22" privateKey="C:\Users\mert-\Desktop\private.ppk" rootFolder="/var/www/html" accessType="SFTP" keyPair="true">
+        <fileTransfer host="radyokermes.com" port="22" privateKey="C:\Users\mert-\Desktop\private.ppk" rootFolder="/var/www/html" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

@@ -6,11 +6,34 @@ $logged = $auth->isLogged();
 var message_send_input = $('#chat-message');
 var chat_box = $('#chat-box');
 var clients_box = $("#online-clients-box");
+var chatbox_container = $("div.chatbox");
+var file_dragover = $("div.file-dragover");
+var file_input = $("#file_image");
+var files_to_send = [];
+var files_data = [];
+var images_to_send = $("div.images-to-send");
 
 $(function () {
 	$('#frmChat').on("submit",function(event){
 		event.preventDefault();
-		ws.send("chat_message",{msg: message_send_input.val()});
+		if(files_to_send.length === 0){
+            if(!message_send_input.val() == ""){
+                ws.send("chat_message",{msg: message_send_input.val()});
+            }else{
+                console.error("Mesaj kutusu boş olamaz");
+            }
+        }
+
+        if(files_to_send.length > 0){
+
+            $.when.apply(this, files_upload()).done(function(){
+                ws.send("chat_message_img",{msg: message_send_input.val() , images: files_data});
+            });
+
+        }
+
+
+
 		message_send_input.val('');
 	});
 
@@ -39,13 +62,139 @@ $(function () {
         <?php
     }
     ?>
+
+    chatbox_container.on("dragover dragleave drop", function (e) {
+        e.preventDefault();
+        if(e.type === "dragover"){
+            if(file_dragover.hasClass("d-none")){
+                file_dragover.removeClass("d-none");
+            }
+        }else{
+            if(!file_dragover.hasClass("d-none")){
+                file_dragover.addClass("d-none");
+            }
+
+            if(e.type === "drop"){
+                files_add(e.originalEvent.dataTransfer.files);
+            }
+        }
+
+    });
+
+    file_input.on("change",function (e) {
+        e.preventDefault();
+        files_add(e.originalEvent.target.files);
+    });
+
+    $(document).on("click", "div.images-to-send .image i.fa", function (e) {
+        e.preventDefault();
+        var image_object = $(this).parent(true);
+        $.each(files_to_send, function (key, value) {
+
+            if(value.image_object.is(image_object)){
+                files_to_send.splice(key,1);
+                value.image_object.remove();
+                if(files_to_send.length === 0){
+                    if(!images_to_send.hasClass("d-none")){
+                        images_to_send.addClass("d-none");
+                    }
+                }
+                return false;
+            }
+        });
+
+    });
+
+
+
 });
+
+function files_add(files){
+    if(images_to_send.hasClass("d-none")){
+        images_to_send.removeClass("d-none");
+    }
+    file_input.attr("type","text");
+    file_input.attr("type","file");
+
+    for( var i = 0; i < files.length; i++) {
+        var image_object = $("<div>", {class: "image"});
+        image_object.html(" <i class=\"fa fa-times\"></i>\n" +
+            "                            <img class=\"blur\" alt=\"\" src=\"\" />\n" +
+            "                            <div class=\"progress\">\n" +
+            "                                <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n" +
+            "                            </div>");
+        images_to_send.append(image_object);
+
+        (function (image_object) {
+            var reader = new FileReader();
+            reader.onload = function (a) {
+                image_object.find("img").attr("src", a.target.result);
+            }
+            reader.readAsDataURL(files[i]);
+        })(image_object)
+
+       files_to_send.push({file: files[i], image_object: image_object});
+
+    }
+
+}
+
+function files_upload(){
+
+    files_data = [];
+    var asyncs = [];
+    for( var i = 0; i < files_to_send.length; i++) {
+        var image_object = files_to_send[i].image_object;
+        var formData = new FormData();
+        formData.append("file", files_to_send[i].file);
+        var ajax;
+        (function(i,image_object){
+
+            ajax = $.ajax({
+                url: "/admin/ajax/upload_img",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                error: function(){
+                  console.error("Resimler Sunucuya Yüklenirken Bir Hata Oluştu");
+                },
+                success: function (e) {
+                    if(e.error){
+                        console.error(e.message)
+                    }else{
+                       files_data.push({img_path: e.file_path, img_id: e.file_id})
+                    }
+                },
+                xhr: function () {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (e) {
+                    if(e.lengthComputable){
+                       var percentComplete = Math.round(e.loaded/e.total*100);
+                       image_object.find(".progress-bar").css("width", percentComplete + "%").text(percentComplete + "%").attr("aria-valuenow",percentComplete);
+                    }
+                })
+                return xhr;
+            }
+
+            });
+
+
+        })(i,image_object);
+        asyncs.push(ajax);
+    }
+
+    return asyncs;
+
+}
+
 
 function scroll_bottom(){
         chat_box.scrollTop(chat_box[0].scrollHeight);
 }
 
-function add_chat_message(name,color,msg,id){
+function add_chat_message(name,color,msg,id, with_image){
     <?php
 
     if($logged){
@@ -58,6 +207,7 @@ function add_chat_message(name,color,msg,id){
     <?php
     }
     ?>
+    
 }
 
 function add_user(<?=($logged)? "admin," : ""?>name, color<?=($logged)? ",ip, id": " "?>){
@@ -194,10 +344,21 @@ function connect_chatserver(){
                     if($(chat_box).scrollTop() + $(chat_box).innerHeight() + 200 >= $(chat_box)[0].scrollHeight) {
                     scroll = true;
                     }
-                    add_chat_message(data.name, data.color, data.message, data.uniqid);
+                    add_chat_message(data.name, data.color, data.message, data.uniqid, false);
                     if(scroll){
                     scroll_bottom();
                     }
+            },
+            single_with_image:function(e){
+                data = e.data;
+                var scroll = false;
+                if($(chat_box).scrollTop() + $(chat_box).innerHeight() + 200 >= $(chat_box)[0].scrollHeight) {
+                    scroll = true;
+                }
+                add_chat_message(data.name, data.color, data.message, data.uniqid, true);
+                if(scroll){
+                    scroll_bottom();
+                }
             },
             ban_user: function(e){
                 chat_box.append('<div class="chat-message text-danger font-weight-bold">Mesaj Yazmanız '+e.data.deadline_date+' \'a kadar yasaklandı.</div>');
