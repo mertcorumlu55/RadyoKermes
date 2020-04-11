@@ -1,0 +1,7 @@
+ps aux | grep php
+sudo ufw allow port
+sudo ufw status
+/usr/local/bin
+http://165.22.30.128:8000/admin/listclients?mount=/autodj
+http://165.22.30.128:8000/status-json.xsl
+http://165.22.30.128:8000/admin/listmounts

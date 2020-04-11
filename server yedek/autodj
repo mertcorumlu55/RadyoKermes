@@ -1,0 +1,47 @@
+#! /bin/sh
+
+# Installation
+# - Move this to /etc/init.d/myservice
+# - chmod +x this
+#
+# Starting and stopping
+# - Start: `service myservice start` or `/etc/init.d/myservice start`
+# - Stop: `service myservice stop` or `/etc/init.d/myservice stop`
+
+NAME=autodj
+DESC="Daemon for autodj"
+PIDFILE="/var/run/${NAME}.pid"
+LOGFILE="/var/log/${NAME}.log"
+
+DAEMON="/usr/bin/ezstream"
+DAEMON_OPTS="/root/autodj/config.xml"
+
+START_OPTS="--start --background --make-pidfile --pidfile ${PIDFILE} --exec ${DAEMON} -- -c ${DAEMON_OPTS} &"
+STOP_OPTS="--stop --oknodo --quiet --exec ${DAEMON}"
+
+#test -x $DAEMON || exit 1
+
+set -e
+
+case "$1" in
+    start)
+        
+        start-stop-daemon $START_OPTS >/dev/null && echo '{"error":"0","message":"AutoDJ başarıyla başlatıldı"}' || echo '{"error":"1","message":"AutoDJ başlatılırken bir hata oluştu"}'
+        ;;
+    stop)
+        start-stop-daemon $STOP_OPTS >/dev/null && echo '{"error":"0","message":"AutoDJ başarıyla durduruldu"}' || echo '{"error":"1","message":"AutoDJ durdurulurken bir hata oluştu"}'
+        rm -f $PIDFILE
+        ;;
+    restart|force-reload)
+        start-stop-daemon $STOP_OPTS >/dev/null
+        sleep 1
+        start-stop-daemon $START_OPTS >/dev/null && echo '{"error":"0","message":"AutoDJ başarıyla yeniden başlatıldı"}' || echo '{"error":"1","message":"AutoDJ yeniden başlatılırken bir hata oluştu"}'
+        ;;
+    *)
+        N=/etc/init.d/$NAME
+        echo "Usage: $N {start|stop|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

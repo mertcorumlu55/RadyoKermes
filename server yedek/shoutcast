@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Sample init script for SHOUTcast
+# by caraoge
+# Released at 11/02/2009 on http://forums.winamp.com/showthread.php?postid=2487604
+# 
+
+# Check for SHOUTcast binary
+test -f /root/shoutcast_server/sc_serv || echo "error" exit 0
+ 
+# The init commands
+case "$1" in
+        start)
+                
+                /root/shoutcast_server/sc_serv daemon >/dev/null  && echo '{"error":"0","message":"Sunucu başarıyla başlatıldı"}' || echo '{"error":"1","message":"Sunucu başlatılırken bir hata oluştu"}'
+
+                ;;
+        stop)
+               
+                kill -9 `ps -C sc_serv -o pid --no-headers` >/dev/null  && echo '{"error":"0","message":"Sunucu başarıyla durduruldu"}' || echo '{"error":"1","message":"Sunucu durdurulurken bir hata oluştu"}'
+                ;;
+        restart)
+                
+                kill -9 `ps -C sc_serv -o pid --no-headers` >/dev/null 
+                
+                /root/shoutcast_server/sc_serv daemon >/dev/null && echo '{"error":"0","message":"Sunucu başarıyla yeniden başlatıldı"}' || echo '{"error":"1","message":"Sunucu yeniden başlatılırken bir hata oluştu"}'
+                ;;
+        *)
+                echo "usage: /etc/init.d/shoutcast"
+                echo "$0 {start | stop | restart}"
+                exit 1
+                ;;
+esac

@@ -1,0 +1,8 @@
+/root/autodj/music/ahbuben.mp3
+/root/autodj/music/benibirakma.mp3
+/root/autodj/music/dunyagulbana.mp3
+/root/autodj/music/elindengeleniardinakoyma.mp3
+/root/autodj/music/sarbusehri.mp3
+/root/autodj/music/sessizveyalniz.mp3
+/root/autodj/music/sevince.mp3
+/root/autodj/music/yalnizlikomurboyu.mp3
